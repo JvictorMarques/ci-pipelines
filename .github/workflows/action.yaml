@@ -1,0 +1,41 @@
+name: Pipeline
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  nome_job:
+    name: Job name
+    runs-on: ubuntu-latest
+    steps:
+      - name: Action name
+        run: echo "Hello World"
+
+      - name: Second action name
+        working-directory: .
+        run: |
+          echo "Hello World 1"
+          echo "Hello World 2"
+          pwd
+
+      - name: Third action name
+        working-directory: .
+        shell: python
+        run: |
+          x = "Hello World Python"
+          print(x)
+
+  segundo_job:
+    name: Segundo job
+    runs-on: ubuntu-latest
+    steps:
+      - name: Verify Node.js
+        run: node --version
+
+      - name: Definir a versão do Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22.14.01'
+
+      - name: Verify new version of Node.js
+        run: node --version
